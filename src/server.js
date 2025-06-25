@@ -3,7 +3,6 @@ import pino from 'pino-http';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { getEnvVar } from './utils/getEnvVar.js';
-import { getContactById } from './services/contacts.js';
 import contactsRouter from './routes/contactsRouter.js';
 
 dotenv.config();
@@ -24,25 +23,6 @@ export const setupServer = () => {
   );
 
   app.use('/contacts', contactsRouter);
-
-  app.get('/contacts/:contactId', async (req, res, next) => {
-    try {
-      const { contactId } = req.params;
-      const contact = await getContactById(contactId);
-
-      if (!contact) {
-        res.status(404).json({
-          message: 'Not Found',
-        });
-        return;
-      }
-      res.status(200).json({
-        data: contact,
-      });
-    } catch (err) {
-      next(err);
-    }
-  });
 
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

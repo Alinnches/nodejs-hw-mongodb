@@ -6,6 +6,6 @@ import {
 
 const contactsRouter = express.Router();
 contactsRouter.get('/', getContactsController);
-contactsRouter.get('/', getContactByIdController);
+contactsRouter.get('/:contactId', getContactByIdController);
 
 export default contactsRouter;

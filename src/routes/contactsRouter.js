@@ -11,14 +11,8 @@ import { createStudentController } from '../controllers/contactsController.js';
 const contactsRouter = express.Router();
 contactsRouter.get('/', ctrlWrapper(getContactsController));
 contactsRouter.get('/:contactId', ctrlWrapper(getContactByIdController));
-contactsRouter.post('/contacts', ctrlWrapper(createStudentController));
-contactsRouter.patch(
-  '/contacts/:contactId',
-  ctrlWrapper(patchContactController),
-);
-contactsRouter.delete(
-  '/conatcs/contactId',
-  ctrlWrapper(deleteContactController),
-);
+contactsRouter.post('/', ctrlWrapper(createStudentController));
+contactsRouter.patch('/:contactId', ctrlWrapper(patchContactController));
+contactsRouter.delete('/:contactId', ctrlWrapper(deleteContactController));
 
 export default contactsRouter;

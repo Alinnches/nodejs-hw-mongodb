@@ -8,7 +8,10 @@ import {
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { createStudentController } from '../controllers/contactsController.js';
 import { validateBody } from '../middlewares/validateBody.js';
-import { createContactSchema } from '../validation/contacts.js';
+import {
+  createContactSchema,
+  updateContactSchema,
+} from '../validation/contacts.js';
 import { isValidId } from '../middlewares/isValidId.js';
 
 const contactsRouter = express.Router();
@@ -26,7 +29,7 @@ contactsRouter.post(
 contactsRouter.patch(
   '/:contactId',
   isValidId,
-  validateBody(createContactSchema),
+  validateBody(updateContactSchema),
   ctrlWrapper(patchContactController),
 );
 contactsRouter.delete(

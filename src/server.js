@@ -16,6 +16,7 @@ export const setupServer = () => {
 
   app.use(express.json());
   app.use(cors());
+
   app.use(
     pino({
       transport: {

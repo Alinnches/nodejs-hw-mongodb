@@ -24,7 +24,7 @@ export const setupServer = () => {
     }),
   );
 
-  app.use('/contacts', contactsRouter);
+  app.use('/api/contacts', contactsRouter);
   app.use(errorHandler);
   app.use(notFoundHandler);
 

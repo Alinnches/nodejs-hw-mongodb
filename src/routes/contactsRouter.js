@@ -3,18 +3,22 @@ import {
   getContactsController,
   getContactByIdController,
   patchContactController,
+  createContactController,
   deleteContactController,
 } from '../controllers/contactsController.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
-import { createStudentController } from '../controllers/contactsController.js';
 import { validateBody } from '../middlewares/validateBody.js';
 import {
   createContactSchema,
   updateContactSchema,
 } from '../validation/contacts.js';
 import { isValidId } from '../middlewares/isValidId.js';
+import { authenticate } from '../middlewares/authenticate.js';
 
 const contactsRouter = express.Router();
+
+contactsRouter.use(authenticate);
+
 contactsRouter.get('/', ctrlWrapper(getContactsController));
 contactsRouter.get(
   '/:contactId',
@@ -24,7 +28,7 @@ contactsRouter.get(
 contactsRouter.post(
   '/',
   validateBody(createContactSchema),
-  ctrlWrapper(createStudentController),
+  ctrlWrapper(createContactController),
 );
 contactsRouter.patch(
   '/:contactId',

@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { getEnvVar } from './utils/getEnvVar.js';
 import contactsRouter from './routes/contactsRouter.js';
+import authRouter from './routes/auth.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import cookieParser from 'cookie-parser';
@@ -27,6 +28,7 @@ export const setupServer = () => {
   );
 
   app.use('/contacts', contactsRouter);
+  app.use('/users', authRouter);
   app.use(errorHandler);
   app.use(notFoundHandler);
 

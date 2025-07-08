@@ -26,6 +26,15 @@ export const loginUser = async (payload) => {
   if (!isEqual) {
     throw createHttpError(401, 'Unauthorized');
   }
+
+  const sessionData = createSession();
+
+  const session = await SessionCollection.create({
+    userId: user._id,
+    ...sessionData,
+  });
+
+  return session;
 };
 
 const createSession = () => {

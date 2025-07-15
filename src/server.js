@@ -3,11 +3,11 @@ import pino from 'pino-http';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { getEnvVar } from './utils/getEnvVar.js';
-import contactsRouter from './routes/contactsRouter.js';
-import authRouter from './routes/auth.js';
+import router from './routes/index.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import cookieParser from 'cookie-parser';
+import { UPLOAD_DIR } from './constants/index.js';
 
 dotenv.config();
 
@@ -27,8 +27,8 @@ export const setupServer = () => {
     }),
   );
 
-  app.use('/contacts', contactsRouter);
-  app.use('/auth', authRouter);
+  app.use(router);
+  app.use('/uploads', express.static(UPLOAD_DIR));
   app.use(errorHandler);
   app.use(notFoundHandler);
 

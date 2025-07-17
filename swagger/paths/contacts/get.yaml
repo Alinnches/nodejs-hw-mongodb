@@ -1,7 +1,7 @@
-summary: Get list of contacts
-operationId: getContacts
 tags:
   - Contacts
+summary: Get list of contacts
+operationId: getContacts
 description: Retrieve a paginated list of contacts with optional filters.
 security:
   - bearerAuth: []
@@ -22,14 +22,14 @@ parameters:
     name: sortBy
     schema:
       type: string
-      example: 'age'
-    description: "All contact's fields can be mentioned. Default value - _id"
+    example: _id
+    description: Field to sort by. Default is _id.
   - in: query
     name: sortOrder
     schema:
       type: string
       enum: ['asc', 'desc']
-      example: 'asc'
+    example: asc
 responses:
   '200':
     description: Successfully retrieved contacts list.

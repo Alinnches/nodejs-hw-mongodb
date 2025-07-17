@@ -1,0 +1,22 @@
+summary: Create a new contact
+operationId: createContact
+tags:
+  - Contacts
+description: Create a new contact record.
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '../../components/schemas/contact.yaml'
+responses:
+  '200':
+    description: Contact created successfully.
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/contact.yaml'
+  '400':
+    $ref: '../../components/responses/notFound.yaml'

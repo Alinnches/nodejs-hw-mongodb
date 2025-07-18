@@ -21,11 +21,21 @@ requestBody:
         properties:
           name:
             type: string
+            example: John
           email:
             type: string
             format: email
-          phone:
+            example: john@gmai.com
+          phoneNumber:
             type: string
+            example: '+380123456789'
+          isFavourite:
+            type: boolean
+            example: false
+          contactType:
+            type: string
+            enum: [work, home, personal]
+            example: home
           photo:
             type: string
             format: binary
@@ -35,6 +45,32 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '../../../components/schemas/contact.yaml'
+          type: object
+          required: [status, message, data]
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Contact updated successfully.
+            data:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: John
+                email:
+                  type: string
+                  example: john@gmail.com
+                phoneNumber:
+                  type: string
+                  example: '+380123456789'
+                contactType:
+                  type: string
+                  example: home
+                isFavourite:
+                  type: boolean
+                  example: false
   '404':
     $ref: '../../../components/responses/notFound.yaml'

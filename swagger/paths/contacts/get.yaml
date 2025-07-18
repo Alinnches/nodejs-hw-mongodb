@@ -37,16 +37,29 @@ responses:
       application/json:
         schema:
           type: object
+          required: [status, message, data]
           properties:
             status:
               type: integer
               example: 200
             message:
               type: string
-              example: Contacts fetched successfully.
+              example: Contacts found successfully.
             data:
               type: array
               items:
                 $ref: '../../components/schemas/contact.yaml'
+            totalPages:
+              type: integer
+              example: 5
+            currentPage:
+              type: integer
+              example: 1
+            perPage:
+              type: integer
+              example: 10
+            totalContacts:
+              type: integer
+              example: 40
   '404':
     $ref: '../../components/responses/notFound.yaml'
